@@ -4,21 +4,28 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class PruebaBotones extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     
-    // Botones de respuesta
+ 
     public JButton boton0, boton1, boton2, boton3;
-    // Botones de comodines
-    public JButton coModin1, Ruleta;
-    
-    // Array para agrupar los botones y facilitar el acceso por índice
+    public JButton coModin1, Ruleta, Llamada, Comodin_chat;
     private JButton[] misBotones;
+    private JLabel lblPregunta;
+
+
+    private int numeroDePreguntaActual = 0; 
+    
+    
+    private int[] respuestasCorrectas = {1, 0, 3, 2, 1, 0, 0, 1, 2, 3, 1, 2, 0, 3, 1};
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -34,71 +41,115 @@ public class PruebaBotones extends JFrame {
     }
 
     public PruebaBotones() {
-        setTitle("Juego de Preguntas - Comodines");
+        setTitle("El Concursillo - Versión Final Comodines");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 350);
+        setBounds(100, 100, 500, 450);
         contentPane = new JPanel();
+        contentPane.setBackground(new Color(240, 240, 240));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        // --- Inicialización de botones de respuesta ---
+     
+        lblPregunta = new JLabel("Pregunta actual: " + (numeroDePreguntaActual + 1));
+        lblPregunta.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblPregunta.setBounds(70, 5, 200, 25);
+        contentPane.add(lblPregunta);
+
+      
         boton0 = new JButton("Opción A");
-        boton0.setBounds(70, 30, 120, 40);
+        boton0.setBounds(70, 40, 150, 40);
         contentPane.add(boton0);
 
         boton1 = new JButton("Opción B");
-        boton1.setBounds(240, 30, 120, 40);
+        boton1.setBounds(260, 40, 150, 40);
         contentPane.add(boton1);
 
         boton2 = new JButton("Opción C");
-        boton2.setBounds(70, 90, 120, 40);
+        boton2.setBounds(70, 100, 150, 40);
         contentPane.add(boton2);
 
         boton3 = new JButton("Opción D");
-        boton3.setBounds(240, 90, 120, 40);
+        boton3.setBounds(260, 100, 150, 40);
         contentPane.add(boton3);
 
-        // Guardamos los botones en el array (el orden es vital)
         misBotones = new JButton[]{boton0, boton1, boton2, boton3};
 
-        // --- Botón Comodín 50:50 ---
+       
         coModin1 = new JButton("50:50");
-        coModin1.setBounds(240, 180, 100, 30);
+        coModin1.setBounds(70, 200, 100, 40);
         contentPane.add(coModin1);
-        
         coModin1.addActionListener(e -> {
             gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
-            
-            // Supongamos que la correcta es la 1 (Boton1)
-            int correcta = 1; 
+            int correcta = respuestasCorrectas[numeroDePreguntaActual];
             int[] aBorrar = gc.usar50porCientoFinal(correcta);
-            
-            // Ocultamos los botones usando un bucle limpio
-            for (int i = 0; i < aBorrar.length; i++) {
-                int indice = aBorrar[i];
-                misBotones[indice].setVisible(false);
-            }
+            for (int i : aBorrar) misBotones[i].setVisible(false);
             coModin1.setEnabled(false);
         });
 
-        // --- Botón Ruleta ---
+       
         Ruleta = new JButton("Ruleta");
-        Ruleta.setBounds(70, 180, 100, 30);
+        Ruleta.setBounds(190, 200, 100, 40);
         contentPane.add(Ruleta);
-        
         Ruleta.addActionListener(e -> {
             gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
-            
-            int correcta = 0; 
+            int correcta = respuestasCorrectas[numeroDePreguntaActual];
             int[] borrar = gc.usarRuletaAleatoria(correcta);
-            
-            for (int i = 0; i < borrar.length; i++) {
-                misBotones[borrar[i]].setVisible(false);
-            }
-            
+            for (int i : borrar) misBotones[i].setVisible(false);
             JOptionPane.showMessageDialog(null, "¡La ruleta ha eliminado " + borrar.length + " opciones!");
             Ruleta.setEnabled(false);
+        });
+
+    
+        Llamada = new JButton("Llamada");
+        Llamada.setBounds(310, 200, 100, 40);
+        contentPane.add(Llamada);
+        Llamada.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
+                int correcta = respuestasCorrectas[numeroDePreguntaActual];
+                String consejo = gc.usarLlamada(correcta);
+                JOptionPane.showMessageDialog(null, consejo, "Llamada a un amigo", JOptionPane.INFORMATION_MESSAGE);
+                Llamada.setEnabled(false);
+            }
+        });
+
+   
+        Comodin_chat = new JButton("Chat");
+        Comodin_chat.setBounds(190, 258, 100, 40); 
+        Comodin_chat.setBackground(new Color(167, 75, 255));
+        Comodin_chat.setForeground(Color.WHITE);
+        contentPane.add(Comodin_chat);
+        Comodin_chat.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
+                int correcta = respuestasCorrectas[numeroDePreguntaActual];
+                int[] votos = gc.usarChat(correcta);
+                
+                String msg = " Resultados del Chat:\n" +
+                             "A: " + votos[0] + "%\n" +
+                             "B: " + votos[1] + "%\n" +
+                             "C: " + votos[2] + "%\n" +
+                             "D: " + votos[3] + "%";
+                
+                JOptionPane.showMessageDialog(null, msg, "Comodín del Chat", JOptionPane.PLAIN_MESSAGE);
+                Comodin_chat.setEnabled(false);
+            }
+        });
+
+    
+        JButton btnSiguiente = new JButton("Siguiente Pregunta");
+        btnSiguiente.setBackground(new Color(144, 238, 144));
+        btnSiguiente.setBounds(150, 340, 180, 40);
+        contentPane.add(btnSiguiente);
+        btnSiguiente.addActionListener(e -> {
+            if (numeroDePreguntaActual < 14) {
+                numeroDePreguntaActual++;
+                lblPregunta.setText("Pregunta actual: " + (numeroDePreguntaActual + 1));
+                for(JButton b : misBotones) b.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "¡Has llegado a la última pregunta!");
+            }
         });
     }
 }

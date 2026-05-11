@@ -60,27 +60,53 @@ package gestionComodines;
 	        return eliminar;
 	    }
 
-	    // 3. LA LLAMADA 
-	    public int[] usarLlamada(int respuestaCorrecta) {
+	 // 3. LA LLAMADA DEL AMIGO
+	    public String usarLlamada(int respuestaCorrecta) {
+	        String[] opciones = {"A", "B", "C", "D"};
+	        int probabilidadAcierto = (int) (Math.random() * 100);
+	        int respuestaSugerida;
+
+	        // Si el azar es mayor a 20 (80% de probabilidad), el amigo acierta
+	        if (probabilidadAcierto > 20) {
+	            respuestaSugerida = respuestaCorrecta;
+	            return "Hola! Pues estoy casi seguro de que la respuesta correcta es la " + opciones[respuestaSugerida] + ".";
+	        } else {
+	            // El amigo se equivoca (20% de probabilidad) y elige una al azar que no sea la correcta
+	            do {
+	                respuestaSugerida = (int) (Math.random() * 4);
+	            } while (respuestaSugerida == respuestaCorrecta);
+	            
+	            return "Uff, qué difícil... no lo sé seguro, pero yo diría que es la " + opciones[respuestaSugerida] + ".";
+	        }
+	    }
+
+	    // 4. EL MAGO 
+	 // 5. COMODÍN DEL CHAT
+	    public int[] usarChat(int respuestaCorrecta) {
 	        int[] porcentajes = new int[4];
+	        int restante = 100;
 
-	        porcentajes[respuestaCorrecta] = (int) (Math.random() * 31) + 50;
+	        // El chat suele acertar, pero le damos un rango amplio (40% al 90%)
+	        porcentajes[respuestaCorrecta] = (int) (Math.random() * 51) + 40;
+	        restante -= porcentajes[respuestaCorrecta];
 
-	        int restante = 100 - porcentajes[respuestaCorrecta];
-
-
+	        // Repartimos el resto entre las incorrectas
 	        for (int i = 0; i < 4; i++) {
 	            if (i != respuestaCorrecta) {
-	                porcentajes[i] = restante / 3; 
+	                int azar = (int) (Math.random() * (restante + 1));
+	                // Si es la última opción que falta por rellenar, le damos todo lo sobrante
+	                if (i == 3 || (i == 2 && respuestaCorrecta == 3) || (i == 1 && respuestaCorrecta >= 2)) {
+	                    porcentajes[i] = restante;
+	                    restante = 0;
+	                } else {
+	                    porcentajes[i] = azar;
+	                    restante -= azar;
+	                }
 	            }
 	        }
 	        return porcentajes;
 	    }
 
-	    // 4. EL MAGO 
-	    public boolean puedeUsarMago(int nivelActual) {
-	        return nivelActual >= 10;
-
 	    }
 
-	}
+	
