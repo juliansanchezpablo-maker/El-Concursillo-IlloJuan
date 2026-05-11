@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 
-public class PruebaBotones extends JFrame {
+public class Preguntas extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -31,7 +31,7 @@ public class PruebaBotones extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    PruebaBotones frame = new PruebaBotones();
+                    Preguntas frame = new Preguntas();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -40,7 +40,7 @@ public class PruebaBotones extends JFrame {
         });
     }
 
-    public PruebaBotones() {
+    public Preguntas() {
         setTitle("El Concursillo - Versión Final Comodines");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 500, 450);
