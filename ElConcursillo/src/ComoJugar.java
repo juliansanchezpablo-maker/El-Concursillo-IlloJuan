@@ -216,7 +216,7 @@ public class ComoJugar extends JFrame {
 	    txtGirasLaRuleta.setBounds(383, 382, 363, 37);
 	    contentPane.add(txtGirasLaRuleta);
 	    
-	    lblTusComodines_1 = new JLabel("50/50");
+	    lblTusComodines_1 = new JLabel("50:50");
 	    lblTusComodines_1.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblTusComodines_1.setForeground(Color.YELLOW);
 	    lblTusComodines_1.setFont(new Font("Tahoma", Font.BOLD, 11));

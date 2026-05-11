@@ -38,14 +38,21 @@ public class MenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuPrincipal() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 656, 356);
-		setSize(800, 600);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 0, 80));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setBounds(100, 100, 656, 356);
+	    setSize(800, 600);
+	    contentPane = new JPanel() {
+	        protected void paintComponent(Graphics g) {
+	            super.paintComponent(g);
+	            ImageIcon fondo = new ImageIcon("C:\\Users\\Usuario\\Desktop\\DAW\\PROGRAMACION\\POOA\\ElConcursillo\\Imagenes\\FondoQQSM2.jpg");
+	            System.out.println("Ancho imagen: " + fondo.getIconWidth());
+	            g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
+	        }
+	    };
+	    contentPane.setLayout(null);
+	    setContentPane(contentPane);
+	    setVisible(true);
+	
 		
 		lblNewLabel = new JLabel("EL CONCURSILLO");
 		lblNewLabel.setForeground(new Color(255, 255, 0));
