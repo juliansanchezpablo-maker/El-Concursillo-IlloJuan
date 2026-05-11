@@ -1,5 +1,5 @@
-
 import gestionInicioSesion.gestionInicioSesion;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -89,15 +89,10 @@ public class PantallaInicioSesion extends JFrame {
 		btnRegistrar.setBounds(545, 161, 130, 42);
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String inputNombre = txtNombreJugador.getText().trim();
-				
-				if (inputNombre.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "¡Error! Debes escribir un nombre.");
-				} else {
-					gestionInicioSesion.nombre = inputNombre;
-					gestionInicioSesion.esPredeterminado = chkPredeterminado.isSelected();
-					JOptionPane.showMessageDialog(null, "Jugador '" + gestionInicioSesion.nombre + "' guardado con éxito.");
-				}
+			
+				gestionInicioSesion.nombre = txtNombreJugador.getText().trim();
+				gestionInicioSesion.esPredeterminado = chkPredeterminado.isSelected();
+				JOptionPane.showMessageDialog(null, "Datos de registro actualizados.");
 			}
 		});
 		contentPane.add(btnRegistrar);
@@ -139,18 +134,21 @@ public class PantallaInicioSesion extends JFrame {
 		btnIniciarJuego.setForeground(Color.WHITE);
 		btnIniciarJuego.setBounds(449, 347, 163, 42);
 		btnIniciarJuego.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
+		
 		btnIniciarJuego.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        if (gestionInicioSesion.nombre == null || gestionInicioSesion.nombre.isEmpty()) {
+		      
+		        if (!chkPredeterminado.isSelected()) {
+		            JOptionPane.showMessageDialog(null, "¡Atención! Marca el tipo de juego que deseas");
+		        } 
+		       
+		        else if (gestionInicioSesion.nombre == null) {
 		            JOptionPane.showMessageDialog(null, "Por favor, pulsa REGISTRAR antes de jugar.");
-		        } else {
+		        } 
+		        else {
 		          
 		            Preguntas ventanaPreguntas = new Preguntas();
-		            
-		           
 		            ventanaPreguntas.setVisible(true);
-		            
-		          
 		            dispose();
 		        }
 		    }
