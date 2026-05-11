@@ -14,6 +14,8 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollBar;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ComoJugar extends JFrame {
 
@@ -40,7 +42,7 @@ public class ComoJugar extends JFrame {
 	public JLabel lblTusComodines_3;
 	public JLabel lblTusComodines_4;
 	public JLabel lblPremios;
-	public JButton btnIniciarPartida_4;
+	public JButton BotonVolverComoJugar;
 	public JLabel lblTusComodines_5;
 	public JLabel lblNewLabel_4;
 	public JLabel lblNewLabel_5;
@@ -251,13 +253,20 @@ public class ComoJugar extends JFrame {
 	    lblPremios.setBounds(-108, 417, 360, 50);
 	    contentPane.add(lblPremios);
 	    
-	    btnIniciarPartida_4 = new JButton("Volver al Menú");
-	    btnIniciarPartida_4.setForeground(new Color(0, 64, 64));
-	    btnIniciarPartida_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-	    btnIniciarPartida_4.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
-	    btnIniciarPartida_4.setBackground(new Color(255, 0, 0));
-	    btnIniciarPartida_4.setBounds(630, 522, 116, 31);
-	    contentPane.add(btnIniciarPartida_4);
+	    BotonVolverComoJugar = new JButton("Volver al Menú");
+	    BotonVolverComoJugar.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		MenuPrincipal ventanaMenu = new MenuPrincipal();
+	    		ventanaMenu.setVisible(true);
+	    		dispose();
+	    	}
+	    });
+	    BotonVolverComoJugar.setForeground(new Color(0, 64, 64));
+	    BotonVolverComoJugar.setFont(new Font("Tahoma", Font.BOLD, 12));
+	    BotonVolverComoJugar.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
+	    BotonVolverComoJugar.setBackground(new Color(255, 0, 0));
+	    BotonVolverComoJugar.setBounds(630, 522, 116, 31);
+	    contentPane.add(BotonVolverComoJugar);
 	    
 	    lblTusComodines_5 = new JLabel("1.000€");
 	    lblTusComodines_5.setHorizontalAlignment(SwingConstants.CENTER);

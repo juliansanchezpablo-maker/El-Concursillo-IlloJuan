@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import gestionComodines.GestionComodines;
 
 public class MenuPrincipal extends JFrame {
 
@@ -17,6 +18,7 @@ public class MenuPrincipal extends JFrame {
 	public JButton btnSalir;
 	public JButton btnComoJugar;
 	public JButton btnIniciarPartida;
+	public JButton pruebaBoton;
 
 	/**
 	 * Launch the application.
@@ -93,6 +95,13 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(btnSalir);
 		
 		btnComoJugar = new JButton("Cómo Jugar");
+		btnComoJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			ComoJugar ventanaComoJugar = new ComoJugar();
+			ventanaComoJugar.setVisible(true);
+			dispose();
+			}
+		});
 		btnComoJugar.setForeground(Color.WHITE);
 		btnComoJugar.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnComoJugar.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
@@ -101,12 +110,16 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(btnComoJugar);
 		
 		btnIniciarPartida = new JButton("Iniciar Partida");
+		btnIniciarPartida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnIniciarPartida.setForeground(new Color(255, 255, 255));
 		btnIniciarPartida.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnIniciarPartida.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
 		btnIniciarPartida.setBackground(new Color(0, 0, 128));
 		btnIniciarPartida.setBounds(256, 229, 250, 46);
 		contentPane.add(btnIniciarPartida);
-
+		
 	}
 }
