@@ -95,7 +95,9 @@ public class PantallaInicioSesion extends JFrame {
 		btnNewButton = new JButton("VOLVER");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				MenuPrincipal ventanaMenu = new MenuPrincipal();
+	    			ventanaMenu.setVisible(true);
+	    			dispose();
 			}
 		});
 		btnNewButton.setBackground(new Color(255, 0, 0));

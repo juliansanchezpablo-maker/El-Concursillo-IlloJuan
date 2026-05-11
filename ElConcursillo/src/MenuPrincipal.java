@@ -108,8 +108,11 @@ public class MenuPrincipal extends JFrame {
 		
 		btnIniciarPartida = new JButton("Iniciar Partida");
 		btnIniciarPartida.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        PantallaInicioSesion ventanaLogin = new PantallaInicioSesion();
+		        ventanaLogin.setVisible(true);
+		        dispose();
+		    }
 		});
 		btnIniciarPartida.setForeground(new Color(255, 255, 255));
 		btnIniciarPartida.setFont(new Font("Tahoma", Font.BOLD, 17));
