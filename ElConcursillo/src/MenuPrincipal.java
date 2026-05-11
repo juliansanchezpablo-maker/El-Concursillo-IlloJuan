@@ -19,6 +19,7 @@ public class MenuPrincipal extends JFrame {
 	public JButton btnComoJugar;
 	public JButton btnIniciarPartida;
 	public JButton pruebaBoton;
+	public JLabel lblFondo;
 
 	/**
 	 * Launch the application.
@@ -43,14 +44,10 @@ public class MenuPrincipal extends JFrame {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 656, 356);
 	    setSize(800, 600);
-	    contentPane = new JPanel() {
-	        protected void paintComponent(Graphics g) {
-	            super.paintComponent(g);
-	            ImageIcon fondo = new ImageIcon("C:\\Users\\Usuario\\Desktop\\DAW\\PROGRAMACION\\POOA\\ElConcursillo\\Imagenes\\FondoQQSM2.jpg");
-	            System.out.println("Ancho imagen: " + fondo.getIconWidth());
-	            g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
-	        }
-	    };
+	    
+	    
+	    
+	    contentPane = new JPanel();
 	    contentPane.setLayout(null);
 	    setContentPane(contentPane);
 	    setVisible(true);
@@ -120,6 +117,11 @@ public class MenuPrincipal extends JFrame {
 		btnIniciarPartida.setBackground(new Color(0, 0, 128));
 		btnIniciarPartida.setBounds(256, 229, 250, 46);
 		contentPane.add(btnIniciarPartida);
+		
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/resource/FondoQQSM2.jpg")));
+		lblFondo.setBounds(0, 0, 786, 563);
+		contentPane.add(lblFondo);
 		
 	}
 }
