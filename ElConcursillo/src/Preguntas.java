@@ -1,30 +1,28 @@
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import java.awt.Color;
 
 public class Preguntas extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     
- 
     public JButton boton0, boton1, boton2, boton3;
     public JButton coModin1, Ruleta, Llamada, Comodin_chat;
     private JButton[] misBotones;
     private JLabel lblPregunta;
-
+    private JLabel lblNombreJugador;
 
     private int numeroDePreguntaActual = 0; 
-    
-    
     private int[] respuestasCorrectas = {1, 0, 3, 2, 1, 0, 0, 1, 2, 3, 1, 2, 0, 3, 1};
 
     public static void main(String[] args) {
@@ -41,22 +39,31 @@ public class Preguntas extends JFrame {
     }
 
     public Preguntas() {
-        setTitle("El Concursillo - Versión Final Comodines");
+        setTitle("El Concursillo - Panel de Juego");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 500, 450);
+        setSize(500, 450);
+        setLocationRelativeTo(null); 
+        
         contentPane = new JPanel();
-        contentPane.setBackground(new Color(240, 240, 240));
+        contentPane.setBackground(new Color(30, 30, 100)); 
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-     
-        lblPregunta = new JLabel("Pregunta actual: ");
+        // Nombre del Jugador
+        String nombreDisplay = (gestionInicioSesion.nombre != null) ? gestionInicioSesion.nombre : "Jugador";
+        lblNombreJugador = new JLabel("Concursante: " + nombreDisplay);
+        lblNombreJugador.setForeground(Color.WHITE);
+        lblNombreJugador.setBounds(24, 10, 300, 25);
+        contentPane.add(lblNombreJugador);
+
+        lblPregunta = new JLabel("Pregunta actual: " + (numeroDePreguntaActual + 1));
+        lblPregunta.setForeground(Color.YELLOW);
         lblPregunta.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblPregunta.setBounds(24, 10, 200, 25);
+        lblPregunta.setBounds(24, 100, 200, 25);
         contentPane.add(lblPregunta);
 
-      
+        // --- BOTONES DE RESPUESTA ---
         boton0 = new JButton("Opción A");
         boton0.setBounds(24, 223, 200, 40);
         contentPane.add(boton0);
@@ -75,89 +82,76 @@ public class Preguntas extends JFrame {
 
         misBotones = new JButton[]{boton0, boton1, boton2, boton3};
 
-       
+        // --- LOS 4 COMODINES ---
+
+        // 1. COMODÍN 50:50
         coModin1 = new JButton("50:50");
-        coModin1.setBackground(new Color(192, 192, 192));
         coModin1.setBounds(24, 40, 100, 40);
-        contentPane.add(coModin1);
         coModin1.addActionListener(e -> {
-            gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
-            int correcta = respuestasCorrectas[numeroDePreguntaActual];
-            int[] aBorrar = gc.usar50porCientoFinal(correcta);
-            for (int i : aBorrar) misBotones[i].setVisible(false);
+            GestionComodines gc = new GestionComodines();
+            int[] borrar = gc.usar50porCientoFinal(respuestasCorrectas[numeroDePreguntaActual]);
+            for (int i : borrar) misBotones[i].setVisible(false);
             coModin1.setEnabled(false);
         });
+        contentPane.add(coModin1);
 
-       
+        // 2. COMODÍN RULETA
         Ruleta = new JButton("Ruleta");
-        Ruleta.setBackground(new Color(192, 192, 192));
         Ruleta.setBounds(134, 40, 100, 40);
-        contentPane.add(Ruleta);
         Ruleta.addActionListener(e -> {
-            gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
-            int correcta = respuestasCorrectas[numeroDePreguntaActual];
-            int[] borrar = gc.usarRuletaAleatoria(correcta);
+            GestionComodines gc = new GestionComodines();
+            int[] borrar = gc.usarRuletaAleatoria(respuestasCorrectas[numeroDePreguntaActual]);
             for (int i : borrar) misBotones[i].setVisible(false);
-            JOptionPane.showMessageDialog(null, "¡La ruleta ha eliminado " + borrar.length + " opciones!");
+            JOptionPane.showMessageDialog(null, "La ruleta ha eliminado opciones.");
             Ruleta.setEnabled(false);
         });
+        contentPane.add(Ruleta);
 
-    
+        // 3. COMODÍN LLAMADA
         Llamada = new JButton("Llamada");
-        Llamada.setBackground(new Color(192, 192, 192));
         Llamada.setBounds(244, 40, 100, 40);
+        Llamada.addActionListener(e -> {
+            GestionComodines gc = new GestionComodines();
+            String consejo = gc.usarLlamada(respuestasCorrectas[numeroDePreguntaActual]);
+            JOptionPane.showMessageDialog(null, "Amigo: " + consejo);
+            Llamada.setEnabled(false);
+        });
         contentPane.add(Llamada);
-        Llamada.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
-                int correcta = respuestasCorrectas[numeroDePreguntaActual];
-                String consejo = gc.usarLlamada(correcta);
-                JOptionPane.showMessageDialog(null, consejo, "Llamada a un amigo", JOptionPane.INFORMATION_MESSAGE);
-                Llamada.setEnabled(false);
-            }
-        });
 
-   
+        // 4. COMODÍN CHAT
         Comodin_chat = new JButton("Chat");
-        Comodin_chat.setBounds(354, 40, 100, 40); 
-        Comodin_chat.setBackground(new Color(192, 192, 192));
-        Comodin_chat.setForeground(new Color(0, 0, 0));
-        contentPane.add(Comodin_chat);
-        Comodin_chat.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
-                int correcta = respuestasCorrectas[numeroDePreguntaActual];
-                int[] votos = gc.usarChat(correcta);
-                
-                String msg = " Resultados del Chat:\n" +
-                             "A: " + votos[0] + "%\n" +
-                             "B: " + votos[1] + "%\n" +
-                             "C: " + votos[2] + "%\n" +
-                             "D: " + votos[3] + "%";
-                
-                JOptionPane.showMessageDialog(null, msg, "Comodín del Chat", JOptionPane.PLAIN_MESSAGE);
-                Comodin_chat.setEnabled(false);
-            }
+        Comodin_chat.setBounds(354, 40, 100, 40);
+        Comodin_chat.addActionListener(e -> {
+            GestionComodines gc = new GestionComodines();
+            int[] v = gc.usarChat(respuestasCorrectas[numeroDePreguntaActual]);
+            String msg = "A: "+v[0]+"% | B: "+v[1]+"% | C: "+v[2]+"% | D: "+v[3]+"%";
+            JOptionPane.showMessageDialog(null, "Resultados de la audiencia:\n" + msg);
+            Comodin_chat.setEnabled(false);
         });
+        contentPane.add(Comodin_chat);
 
-    
-        JButton btnSiguiente = new JButton("Siguiente Pregunta");
-        btnSiguiente.setBackground(new Color(144, 238, 144));
+        // --- NAVEGACIÓN ---
+        JButton btnSiguiente = new JButton("SIGUIENTE");
+        btnSiguiente.setBackground(Color.GREEN);
         btnSiguiente.setBounds(338, 370, 138, 33);
-        contentPane.add(btnSiguiente);
-        
-        JButton btnVolverInicio = new JButton("VOLVER INICIO");
-        btnVolverInicio.setBackground(new Color(255, 85, 85));
-        btnVolverInicio.setBounds(10, 370, 138, 33);
-        contentPane.add(btnVolverInicio);
         btnSiguiente.addActionListener(e -> {
             if (numeroDePreguntaActual < 14) {
                 numeroDePreguntaActual++;
                 lblPregunta.setText("Pregunta actual: " + (numeroDePreguntaActual + 1));
                 for(JButton b : misBotones) b.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "¡Has llegado a la última pregunta!");
             }
         });
+        contentPane.add(btnSiguiente);
+
+        JButton btnVolver = new JButton("VOLVER");
+        btnVolver.setBackground(Color.RED);
+        btnVolver.setForeground(Color.WHITE);
+        btnVolver.setBounds(10, 370, 138, 33);
+        btnVolver.addActionListener(e -> {
+            PantallaInicioSesion inicio = new PantallaInicioSesion();
+            inicio.setVisible(true);
+            dispose();
+        });
+        contentPane.add(btnVolver);
     }
 }
