@@ -41,7 +41,7 @@ public class Preguntas extends JFrame {
     public Preguntas() {
         setTitle("El Concursillo - Panel de Juego");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 450);
+	    setSize(800, 600);
         setLocationRelativeTo(null); 
         
         contentPane = new JPanel();
