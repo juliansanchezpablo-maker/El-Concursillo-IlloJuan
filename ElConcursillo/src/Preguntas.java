@@ -51,33 +51,34 @@ public class Preguntas extends JFrame {
         contentPane.setLayout(null);
 
      
-        lblPregunta = new JLabel("Pregunta actual: " + (numeroDePreguntaActual + 1));
+        lblPregunta = new JLabel("Pregunta actual: ");
         lblPregunta.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblPregunta.setBounds(70, 5, 200, 25);
+        lblPregunta.setBounds(24, 10, 200, 25);
         contentPane.add(lblPregunta);
 
       
         boton0 = new JButton("Opción A");
-        boton0.setBounds(70, 40, 150, 40);
+        boton0.setBounds(24, 223, 200, 40);
         contentPane.add(boton0);
 
         boton1 = new JButton("Opción B");
-        boton1.setBounds(260, 40, 150, 40);
+        boton1.setBounds(244, 223, 206, 40);
         contentPane.add(boton1);
 
         boton2 = new JButton("Opción C");
-        boton2.setBounds(70, 100, 150, 40);
+        boton2.setBounds(24, 273, 200, 40);
         contentPane.add(boton2);
 
         boton3 = new JButton("Opción D");
-        boton3.setBounds(260, 100, 150, 40);
+        boton3.setBounds(244, 273, 206, 40);
         contentPane.add(boton3);
 
         misBotones = new JButton[]{boton0, boton1, boton2, boton3};
 
        
         coModin1 = new JButton("50:50");
-        coModin1.setBounds(70, 200, 100, 40);
+        coModin1.setBackground(new Color(192, 192, 192));
+        coModin1.setBounds(24, 40, 100, 40);
         contentPane.add(coModin1);
         coModin1.addActionListener(e -> {
             gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
@@ -89,7 +90,8 @@ public class Preguntas extends JFrame {
 
        
         Ruleta = new JButton("Ruleta");
-        Ruleta.setBounds(190, 200, 100, 40);
+        Ruleta.setBackground(new Color(192, 192, 192));
+        Ruleta.setBounds(134, 40, 100, 40);
         contentPane.add(Ruleta);
         Ruleta.addActionListener(e -> {
             gestionComodines.GestionComodines gc = new gestionComodines.GestionComodines();
@@ -102,7 +104,8 @@ public class Preguntas extends JFrame {
 
     
         Llamada = new JButton("Llamada");
-        Llamada.setBounds(310, 200, 100, 40);
+        Llamada.setBackground(new Color(192, 192, 192));
+        Llamada.setBounds(244, 40, 100, 40);
         contentPane.add(Llamada);
         Llamada.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -116,9 +119,9 @@ public class Preguntas extends JFrame {
 
    
         Comodin_chat = new JButton("Chat");
-        Comodin_chat.setBounds(190, 258, 100, 40); 
-        Comodin_chat.setBackground(new Color(167, 75, 255));
-        Comodin_chat.setForeground(Color.WHITE);
+        Comodin_chat.setBounds(354, 40, 100, 40); 
+        Comodin_chat.setBackground(new Color(192, 192, 192));
+        Comodin_chat.setForeground(new Color(0, 0, 0));
         contentPane.add(Comodin_chat);
         Comodin_chat.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -140,8 +143,13 @@ public class Preguntas extends JFrame {
     
         JButton btnSiguiente = new JButton("Siguiente Pregunta");
         btnSiguiente.setBackground(new Color(144, 238, 144));
-        btnSiguiente.setBounds(150, 340, 180, 40);
+        btnSiguiente.setBounds(338, 370, 138, 33);
         contentPane.add(btnSiguiente);
+        
+        JButton btnVolverInicio = new JButton("VOLVER INICIO");
+        btnVolverInicio.setBackground(new Color(255, 85, 85));
+        btnVolverInicio.setBounds(10, 370, 138, 33);
+        contentPane.add(btnVolverInicio);
         btnSiguiente.addActionListener(e -> {
             if (numeroDePreguntaActual < 14) {
                 numeroDePreguntaActual++;
