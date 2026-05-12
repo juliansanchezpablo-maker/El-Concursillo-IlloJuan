@@ -4,12 +4,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
+import javax.swing.JProgressBar;
 
 public class Preguntas extends JFrame {
 
@@ -24,6 +28,9 @@ public class Preguntas extends JFrame {
 
     private int numeroDePreguntaActual = 0; 
     private int[] respuestasCorrectas = {1, 0, 3, 2, 1, 0, 0, 1, 2, 3, 1, 2, 0, 3, 1};
+    public JLabel lblNewLabel_1;
+    public JTextArea areaDinero;
+    public JTextArea textArea;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -54,30 +61,46 @@ public class Preguntas extends JFrame {
         String nombreDisplay = (gestionInicioSesion.nombre != null) ? gestionInicioSesion.nombre : "Jugador";
         lblNombreJugador = new JLabel("Concursante: " + nombreDisplay);
         lblNombreJugador.setForeground(Color.WHITE);
-        lblNombreJugador.setBounds(24, 10, 300, 25);
+        lblNombreJugador.setBounds(43, 99, 301, 25);
         contentPane.add(lblNombreJugador);
 
         lblPregunta = new JLabel("Pregunta actual: " + (numeroDePreguntaActual + 1));
         lblPregunta.setForeground(Color.YELLOW);
         lblPregunta.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblPregunta.setBounds(24, 100, 200, 25);
+        lblPregunta.setBounds(33, 64, 200, 25);
         contentPane.add(lblPregunta);
 
         // --- BOTONES DE RESPUESTA ---
         boton0 = new JButton("Opción A");
-        boton0.setBounds(24, 223, 200, 40);
+        boton0.setForeground(new Color(255, 255, 255));
+        boton0.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
+        boton0.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        boton0.setBackground(new Color(21, 21, 70));
+        boton0.setBounds(34, 267, 232, 62);
         contentPane.add(boton0);
 
         boton1 = new JButton("Opción B");
-        boton1.setBounds(244, 223, 206, 40);
+        boton1.setForeground(new Color(255, 255, 255));
+        boton1.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
+        boton1.setBackground(new Color(21, 21, 70));
+        boton1.setBounds(299, 267, 238, 62);
         contentPane.add(boton1);
 
         boton2 = new JButton("Opción C");
-        boton2.setBounds(24, 273, 200, 40);
+        boton2.setForeground(new Color(255, 255, 255));
+        boton2.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
+        boton2.setBackground(new Color(21, 21, 70));
+        boton2.setBounds(34, 362, 232, 62);
         contentPane.add(boton2);
 
         boton3 = new JButton("Opción D");
-        boton3.setBounds(244, 273, 206, 40);
+        boton3.setForeground(new Color(255, 255, 255));
+        boton3.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
+        boton3.setBackground(new Color(21, 21, 70));
+        boton3.setBounds(299, 362, 238, 62);
         contentPane.add(boton3);
 
         misBotones = new JButton[]{boton0, boton1, boton2, boton3};
@@ -86,7 +109,11 @@ public class Preguntas extends JFrame {
 
         // 1. COMODÍN 50:50
         coModin1 = new JButton("50:50");
-        coModin1.setBounds(24, 40, 100, 40);
+        coModin1.setForeground(new Color(255, 255, 255));
+        coModin1.setBackground(new Color(30, 30, 100));
+        coModin1.setFont(new Font("Tahoma", Font.BOLD, 12));
+        coModin1.setBounds(34, 475, 100, 40);
+        coModin1.setBorder(new LineBorder(new Color(255, 215, 0), 4, true));
         coModin1.addActionListener(e -> {
             GestionComodines gc = new GestionComodines();
             int[] borrar = gc.usar50porCientoFinal(respuestasCorrectas[numeroDePreguntaActual]);
@@ -97,7 +124,11 @@ public class Preguntas extends JFrame {
 
         // 2. COMODÍN RULETA
         Ruleta = new JButton("Ruleta");
-        Ruleta.setBounds(134, 40, 100, 40);
+        Ruleta.setForeground(new Color(255, 255, 255));
+        Ruleta.setBackground(new Color(30, 30, 100));
+        Ruleta.setFont(new Font("Tahoma", Font.BOLD, 12));
+        Ruleta.setBounds(166, 475, 100, 40);
+        Ruleta.setBorder(new LineBorder(new Color(255, 215, 0), 4, true));
         Ruleta.addActionListener(e -> {
             GestionComodines gc = new GestionComodines();
             int[] borrar = gc.usarRuletaAleatoria(respuestasCorrectas[numeroDePreguntaActual]);
@@ -109,7 +140,11 @@ public class Preguntas extends JFrame {
 
         // 3. COMODÍN LLAMADA
         Llamada = new JButton("Llamada");
-        Llamada.setBounds(244, 40, 100, 40);
+        Llamada.setForeground(new Color(255, 255, 255));
+        Llamada.setBackground(new Color(30, 30, 100));
+        Llamada.setFont(new Font("Tahoma", Font.BOLD, 12));
+        Llamada.setBounds(299, 475, 100, 40);
+        Llamada.setBorder(new LineBorder(new Color(255, 215, 0), 4, true));
         Llamada.addActionListener(e -> {
             GestionComodines gc = new GestionComodines();
             String consejo = gc.usarLlamada(respuestasCorrectas[numeroDePreguntaActual]);
@@ -120,7 +155,11 @@ public class Preguntas extends JFrame {
 
         // 4. COMODÍN CHAT
         Comodin_chat = new JButton("Chat");
-        Comodin_chat.setBounds(354, 40, 100, 40);
+        Comodin_chat.setForeground(new Color(255, 255, 255));
+        Comodin_chat.setBackground(new Color(30, 30, 100));
+        Comodin_chat.setFont(new Font("Tahoma", Font.BOLD, 12));
+        Comodin_chat.setBounds(437, 475, 100, 40);
+        Comodin_chat.setBorder(new LineBorder(new Color(255, 215, 0), 5, true));
         Comodin_chat.addActionListener(e -> {
             GestionComodines gc = new GestionComodines();
             int[] v = gc.usarChat(respuestasCorrectas[numeroDePreguntaActual]);
@@ -133,7 +172,7 @@ public class Preguntas extends JFrame {
         // --- NAVEGACIÓN ---
         JButton btnSiguiente = new JButton("SIGUIENTE");
         btnSiguiente.setBackground(Color.GREEN);
-        btnSiguiente.setBounds(338, 370, 138, 33);
+        btnSiguiente.setBounds(626, 479, 138, 33);
         btnSiguiente.addActionListener(e -> {
             if (numeroDePreguntaActual < 14) {
                 numeroDePreguntaActual++;
@@ -143,15 +182,36 @@ public class Preguntas extends JFrame {
         });
         contentPane.add(btnSiguiente);
 
-        JButton btnVolver = new JButton("VOLVER");
+        JButton btnVolver = new JButton("SALIR");
         btnVolver.setBackground(Color.RED);
         btnVolver.setForeground(Color.WHITE);
-        btnVolver.setBounds(10, 370, 138, 33);
+        btnVolver.setBounds(687, 56, 77, 33);
         btnVolver.addActionListener(e -> {
             PantallaInicioSesion inicio = new PantallaInicioSesion();
             inicio.setVisible(true);
             dispose();
         });
         contentPane.add(btnVolver);
+        
+        lblNewLabel_1 = new JLabel("PREMIOS");
+        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
+        lblNewLabel_1.setForeground(new Color(255, 255, 0));
+        lblNewLabel_1.setBounds(626, 97, 87, 53);
+        contentPane.add(lblNewLabel_1);
+        
+        areaDinero = new JTextArea();
+        areaDinero.setText("\r\n\r\n\r\n 15\t1.000.000\r\n 14\t500.000\r\n 13\t250.000\r\n 12\t125.000\r\n 11\t64.000\r\n 10\t20.000\r\n 9\t10.000\r\n 8\t5.000\r\n 7\t2.500\r\n 6\t1.500\r\n 5\t1.000\r\n 4\t500\r\n 3\t300\r\n 2\t200\r\n 1\t100\r\n");
+        areaDinero.setForeground(Color.WHITE);
+        areaDinero.setFont(new Font("Arial Black", Font.BOLD, 13));
+        areaDinero.setBorder(new LineBorder(new Color(0, 0, 0), 4, true));
+        areaDinero.setBackground(new Color(21, 21, 70));
+        areaDinero.setBounds(570, 99, 193, 348);
+        contentPane.add(areaDinero);
+        
+        textArea = new JTextArea();
+        textArea.setBackground(new Color(21, 21, 70));
+        textArea.setBounds(34, 99, 503, 135);
+        contentPane.add(textArea);
+        textArea.setBorder(new LineBorder(new Color(255, 215, 0), 4, true));
     }
 }

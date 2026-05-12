@@ -108,6 +108,10 @@ public class ComoJugar extends JFrame {
 	    contentPane.add(lblNewLabel_3);
 	    
 	    btnIniciarPartida = new JButton("1");
+	    btnIniciarPartida.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	}
+	    });
 	    btnIniciarPartida.setForeground(new Color(0, 64, 64));
 	    btnIniciarPartida.setFont(new Font("Tahoma", Font.BOLD, 12));
 	    btnIniciarPartida.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
