@@ -1,0 +1,675 @@
+[{
+  "_id": {
+    "$oid": "6a0305a308cbacfee5639ed8"
+  },
+  "tematica": "Cultura General",
+  "nivel": 1,
+  "pregunta": "¿Cuál es el planeta mas cercano al sol?",
+  "opciones": [
+    "Marte",
+    "Venus",
+    "Jupiter",
+    "Mercurio"
+  ],
+  "respuesta_correcta": "Mercurio"
+},
+{
+  "_id": {
+    "$oid": "6a0306a708cbacfee5639eda"
+  },
+  "tematica": "Cultura General",
+  "nivel": 2,
+  "pregunta": "Quién escribió 'Don Quijote de la Mancha' ?",
+  "opciones": [
+    "Lope de Vega",
+    "Cervantes",
+    "Quevedo",
+    "Neruda"
+  ],
+  "respuesta_correcta": "Cervantes"
+},
+{
+  "_id": {
+    "$oid": "6a03073f08cbacfee5639edc"
+  },
+  "tematica": "Cultura General",
+  "nivel": 3,
+  "pregunta": "¿Cuál es el número atómico del Hidrógeno?",
+  "opciones": [
+    "2",
+    "0",
+    "1",
+    "10"
+  ],
+  "respuesta_correcta": "1"
+},
+{
+  "_id": {
+    "$oid": "6a03076308cbacfee5639ede"
+  },
+  "tematica": "Cultura General",
+  "nivel": 4,
+  "pregunta": "¿Cuál es el hueso más largo del cuerpo humano?",
+  "opciones": [
+    "Húmero",
+    "Fémur",
+    "Tibia",
+    "Radio"
+  ],
+  "respuesta_correcta": "Fémur"
+},
+{
+  "_id": {
+    "$oid": "6a03079508cbacfee5639ee0"
+  },
+  "tematica": "Cultura General",
+  "nivel": 5,
+  "pregunta": "¿Quién pintó la Mona Lisa?",
+  "opciones": [
+    "Van Gogh",
+    "Picasso",
+    "Leonardo da Vinci",
+    "Dalí"
+  ],
+  "respuesta_correcta": "Leonardo da Vinci"
+},
+{
+  "_id": {
+    "$oid": "6a0307ab08cbacfee5639ee2"
+  },
+  "tematica": "Cultura General",
+  "nivel": 6,
+  "pregunta": "¿Cuál es el metal cuyo símbolo químico es Au?",
+  "opciones": [
+    "Plata",
+    "Cobre",
+    "Oro",
+    "Hierro"
+  ],
+  "respuesta_correcta": "Oro"
+},
+{
+  "_id": {
+    "$oid": "6a0307be08cbacfee5639ee4"
+  },
+  "tematica": "Cultura General",
+  "nivel": 7,
+  "pregunta": "¿Cómo se llama el proceso por el cual las plantas fabrican su alimento?",
+  "opciones": [
+    "Oxidación",
+    "Fotosíntesis",
+    "Respiración",
+    "Combustión"
+  ],
+  "respuesta_correcta": "Fotosíntesis"
+},
+{
+  "_id": {
+    "$oid": "6a0307d008cbacfee5639ee6"
+  },
+  "tematica": "Cultura General",
+  "nivel": 8,
+  "pregunta": "¿A qué temperatura (Celsius) hierve el agua a nivel del mar?",
+  "opciones": [
+    "90°",
+    "110°",
+    "100°",
+    "80°"
+  ],
+  "respuesta_correcta": "100°"
+},
+{
+  "_id": {
+    "$oid": "6a0307fb08cbacfee5639ee8"
+  },
+  "tematica": "Cultura General",
+  "nivel": 9,
+  "pregunta": "¿Qué autor escribió 'Romeo y Julieta'?",
+  "opciones": [
+    "Charles Dickens",
+    "William Shakespeare",
+    "Oscar Wilde",
+    "Víctor Hugo"
+  ],
+  "respuesta_correcta": "William Shakespeare"
+},
+{
+  "_id": {
+    "$oid": "6a03081808cbacfee5639eea"
+  },
+  "tematica": "Cultura General",
+  "nivel": 10,
+  "pregunta": "¿Qué gas necesitan las plantas para la fotosíntesis?",
+  "opciones": [
+    "Oxígeno",
+    "Hidrógeno",
+    "Dióxido de carbono",
+    "Metano"
+  ],
+  "respuesta_correcta": "Dióxido de carbono"
+},
+{
+  "_id": {
+    "$oid": "6a03082d08cbacfee5639eec"
+  },
+  "tematica": "Cultura General",
+  "nivel": 11,
+  "pregunta": "¿Cuál es la sustancia más dura encontrada en la naturaleza?",
+  "opciones": [
+    "Grafito",
+    "Diamante",
+    "Acero",
+    "Cuarzo"
+  ],
+  "respuesta_correcta": "Diamante"
+},
+{
+  "_id": {
+    "$oid": "6a03084208cbacfee5639eee"
+  },
+  "tematica": "Cultura General",
+  "nivel": 12,
+  "pregunta": "¿Cuál es el elemento más abundante en la atmósfera terrestre?",
+  "opciones": [
+    "Oxígeno",
+    "Hidrógeno",
+    "Nitrógeno",
+    "Argón"
+  ],
+  "respuesta_correcta": "Nitrógeno"
+},
+{
+  "_id": {
+    "$oid": "6a03087308cbacfee5639ef0"
+  },
+  "tematica": "Cultura General",
+  "nivel": 13,
+  "pregunta": "¿Qué científico propuso la Teoría de la Relatividad?",
+  "opciones": [
+    "Isaac Newton",
+    "Nikola Tesla",
+    "Albert Einstein",
+    "Stephen Hawking"
+  ],
+  "respuesta_correcta": "Albert Einstein"
+},
+{
+  "_id": {
+    "$oid": "6a03088708cbacfee5639ef2"
+  },
+  "tematica": "Cultura General",
+  "nivel": 14,
+  "pregunta": "¿Cuál es el nombre del cuadro de Picasso sobre el bombardeo español?",
+  "opciones": [
+    "El Grito",
+    "Guernica",
+    "Las Meninas",
+    "Los Girasoles"
+  ],
+  "respuesta_correcta": "Guernica"
+},
+{
+  "_id": {
+    "$oid": "6a03089708cbacfee5639ef4"
+  },
+  "tematica": "Cultura General",
+  "nivel": 15,
+  "pregunta": "¿Quién pintó la obra 'La joven de la perla'?",
+  "opciones": [
+    "Da Vinci",
+    "Johannes Vermeer",
+    "Rembrandt",
+    "Van Gogh"
+  ],
+  "respuesta_correcta": "Johannes Vermeer"
+},
+{
+  "_id": {
+    "$oid": "6a03091d08cbacfee5639ef6"
+  },
+  "tematica": "Deportes",
+  "nivel": 1,
+  "pregunta": "¿Cuántos jugadores tiene un equipo de fútbol en el campo?",
+  "opciones": [
+    "10",
+    "11",
+    "12",
+    "9"
+  ],
+  "respuesta_correcta": "11"
+},
+{
+  "_id": {
+    "$oid": "6a03093808cbacfee5639ef8"
+  },
+  "tematica": "Deportes",
+  "nivel": 2,
+  "pregunta": "¿Cada cuántos años se celebran los Juegos Olímpicos de verano?",
+  "opciones": [
+    "2",
+    "4",
+    "5",
+    "6"
+  ],
+  "respuesta_correcta": "4"
+},
+{
+  "_id": {
+    "$oid": "6a03095908cbacfee5639efa"
+  },
+  "tematica": "Deportes",
+  "nivel": 3,
+  "pregunta": "¿En qué deporte se puede hacer un 'strike'?",
+  "opciones": [
+    "Tenis",
+    "Fútbol",
+    "Bolos",
+    "Golf"
+  ],
+  "respuesta_correcta": "Bolos"
+},
+{
+  "_id": {
+    "$oid": "6a03097008cbacfee5639efc"
+  },
+  "tematica": "Deportes",
+  "nivel": 4,
+  "pregunta": "¿En qué deporte destacó Muhammad Ali?",
+  "opciones": [
+    "Lucha libre",
+    "Boxeo",
+    "Karate",
+    "Esgrima"
+  ],
+  "respuesta_correcta": "Boxeo"
+},
+{
+  "_id": {
+    "$oid": "6a03098408cbacfee5639efe"
+  },
+  "tematica": "Deportes",
+  "nivel": 5,
+  "pregunta": "¿Cuál es la distancia de una maratón completa?",
+  "opciones": [
+    "21 km",
+    "42.195 km",
+    "10 km",
+    "50 km"
+  ],
+  "respuesta_correcta": "42.195 km"
+},
+{
+  "_id": {
+    "$oid": "6a03099a08cbacfee5639f01"
+  },
+  "tematica": "Deportes",
+  "nivel": 6,
+  "pregunta": "¿Cuántos puntos vale un tiro libre en baloncesto?",
+  "opciones": [
+    "1",
+    "2",
+    "3",
+    "0.5"
+  ],
+  "respuesta_correcta": "1"
+},
+{
+  "_id": {
+    "$oid": "6a0309c008cbacfee5639f03"
+  },
+  "tematica": "Deportes",
+  "nivel": 7,
+  "pregunta": "¿En qué deporte se utiliza el término 'Home Run'?",
+  "opciones": [
+    "Tenis",
+    "Béisbol",
+    "Golf",
+    "Rugby"
+  ],
+  "respuesta_correcta": "Béisbol"
+},
+{
+  "_id": {
+    "$oid": "6a0309f008cbacfee5639f06"
+  },
+  "tematica": "Deportes",
+  "nivel": 8,
+  "pregunta": "¿Quién es el tenista con más títulos de Grand Slam (masculino)?",
+  "opciones": [
+    "Roger Federer",
+    "Rafael Nadal",
+    "Novak Djokovic",
+    "Andre Agassi"
+  ],
+  "respuesta_correcta": "Novak Djokovic"
+},
+{
+  "_id": {
+    "$oid": "6a0309ff08cbacfee5639f08"
+  },
+  "tematica": "Deportes",
+  "nivel": 9,
+  "pregunta": "¿En qué ciudad se celebraron los primeros JJOO de la era moderna (1896)?",
+  "opciones": [
+    "Roma",
+    "París",
+    "Atenas",
+    "Londres"
+  ],
+  "respuesta_correcta": "Atenas"
+},
+{
+  "_id": {
+    "$oid": "6a030a1608cbacfee5639f0a"
+  },
+  "tematica": "Deportes",
+  "nivel": 10,
+  "pregunta": "¿Qué color de maillot lleva el líder en el Tour de Francia?",
+  "opciones": [
+    "Rojo",
+    "Verde",
+    "Amarillo",
+    "Blanco"
+  ],
+  "respuesta_correcta": "Amarillo"
+},
+{
+  "_id": {
+    "$oid": "6a030a2f08cbacfee5639f0c"
+  },
+  "tematica": "Deportes",
+  "nivel": 11,
+  "pregunta": "¿Cuál es el único país que ha participado en todas las fases finales de los mundiales?",
+  "opciones": [
+    "Alemania",
+    "Italia",
+    "Brasil",
+    "Argentina"
+  ],
+  "respuesta_correcta": "Brasil"
+},
+{
+  "_id": {
+    "$oid": "6a030a3f08cbacfee5639f0e"
+  },
+  "tematica": "Deportes",
+  "nivel": 12,
+  "pregunta": "¿En qué año se celebró el primer mundial de fútbol de la historia?",
+  "opciones": [
+    "1950",
+    "1930",
+    "1924",
+    "1938"
+  ],
+  "respuesta_correcta": "1930"
+},
+{
+  "_id": {
+    "$oid": "6a030a5408cbacfee5639f10"
+  },
+  "tematica": "Deportes",
+  "nivel": 13,
+  "pregunta": "¿Quién es el máximo goleador histórico de los mundiales de fútbol?",
+  "opciones": [
+    "Pelé",
+    "Miroslav Klose",
+    "Ronaldo",
+    "Messi"
+  ],
+  "respuesta_correcta": "Miroslav Klose"
+},
+{
+  "_id": {
+    "$oid": "6a030a8208cbacfee5639f13"
+  },
+  "tematica": "Deportes",
+  "nivel": 14,
+  "pregunta": "¿Qué selección de rugby es conocida como los 'Springboks'?",
+  "opciones": [
+    "Nueva Zelanda",
+    "Australia",
+    "Sudáfrica",
+    "Gales"
+  ],
+  "respuesta_correcta": "Sudáfrica"
+},
+{
+  "_id": {
+    "$oid": "6a030a9308cbacfee5639f15"
+  },
+  "tematica": "Deportes",
+  "nivel": 15,
+  "pregunta": "¿Cómo se llama el trofeo que se entrega en el fútbol americano (NFL)?",
+  "opciones": [
+    "Copa Davis",
+    "Vince Lombardi",
+    "Larry O'Brien",
+    "Stanley Cup"
+  ],
+  "respuesta_correcta": "Vince Lombardi"
+},
+{
+  "_id": {
+    "$oid": "6a030b5208cbacfee5639f17"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 1,
+  "pregunta": "¿En qué país se encuentran las pirámides de Giza?",
+  "opciones": [
+    "México",
+    "Egipto",
+    "Perú",
+    "Jordania"
+  ],
+  "respuesta_correcta": "Egipto"
+},
+{
+  "_id": {
+    "$oid": "6a030b5c08cbacfee5639f19"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 2,
+  "pregunta": "¿Cuál es la capital de Italia?",
+  "opciones": [
+    "Milán",
+    "Venecia",
+    "Roma",
+    "Nápoles"
+  ],
+  "respuesta_correcta": "Roma"
+},
+{
+  "_id": {
+    "$oid": "6a030b6c08cbacfee5639f1b"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 3,
+  "pregunta": "¿Cuál es el país más grande del mundo por superficie?",
+  "opciones": [
+    "China",
+    "EE. UU.",
+    "Rusia",
+    "Canadá"
+  ],
+  "respuesta_correcta": "Rusia"
+},
+{
+  "_id": {
+    "$oid": "6a030b7908cbacfee5639f1d"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 4,
+  "pregunta": "¿Qué océano baña las costas de Brasil?",
+  "opciones": [
+    "Índico",
+    "Pacífico",
+    "Atlántico",
+    "Ártico"
+  ],
+  "respuesta_correcta": "Atlántico"
+},
+{
+  "_id": {
+    "$oid": "6a030b8808cbacfee5639f1f"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 5,
+  "pregunta": "¿Quién descubrió América en 1492?",
+  "opciones": [
+    "Magallanes",
+    "Cristóbal Colón",
+    "Américo Vespucio",
+    "Elcano"
+  ],
+  "respuesta_correcta": "Cristóbal Colón"
+},
+{
+  "_id": {
+    "$oid": "6a030b9308cbacfee5639f21"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 6,
+  "pregunta": "¿Quién fue el primer presidente de los Estados Unidos?",
+  "opciones": [
+    "Thomas Jefferson",
+    "Abraham Lincoln",
+    "George Washington",
+    "John Adams"
+  ],
+  "respuesta_correcta": "George Washington"
+},
+{
+  "_id": {
+    "$oid": "6a030ba208cbacfee5639f23"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 7,
+  "pregunta": "¿Qué civilización antigua construyó Machu Picchu?",
+  "opciones": [
+    "Mayas",
+    "Aztecas",
+    "Incas",
+    "Olmecas"
+  ],
+  "respuesta_correcta": "Incas"
+},
+{
+  "_id": {
+    "$oid": "6a030bac08cbacfee5639f25"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 8,
+  "pregunta": "¿En qué año comenzó la Segunda Guerra Mundial?",
+  "opciones": [
+    "1914",
+    "1945",
+    "1939",
+    "1929"
+  ],
+  "respuesta_correcta": "1939"
+},
+{
+  "_id": {
+    "$oid": "6a030bb708cbacfee5639f27"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 9,
+  "pregunta": "¿Qué canal une el Océano Atlántico con el Pacífico?",
+  "opciones": [
+    "Canal de Suez",
+    "Canal de Corinto",
+    "Canal de Panamá",
+    "Canal de Kiel"
+  ],
+  "respuesta_correcta": "Canal de Panamá"
+},
+{
+  "_id": {
+    "$oid": "6a030bc508cbacfee5639f29"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 10,
+  "pregunta": "¿En qué año cayó el Muro de Berlín?",
+  "opciones": [
+    "1985",
+    "1989",
+    "1991",
+    "1975"
+  ],
+  "respuesta_correcta": "1989"
+},
+{
+  "_id": {
+    "$oid": "6a030bcf08cbacfee5639f2b"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 11,
+  "pregunta": "¿Qué cordillera separa Europa de Asia?",
+  "opciones": [
+    "Alpes",
+    "Andes",
+    "Montes Urales",
+    "Pirineos"
+  ],
+  "respuesta_correcta": "Montes Urales"
+},
+{
+  "_id": {
+    "$oid": "6a030bda08cbacfee5639f2d"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 12,
+  "pregunta": "¿Cuál es el lugar más seco de la Tierra?",
+  "opciones": [
+    "Sahara",
+    "Desierto de Atacama",
+    "Gobi",
+    "Valle de la Muerte"
+  ],
+  "respuesta_correcta": "Desierto de Atacama"
+},
+{
+  "_id": {
+    "$oid": "6a030be708cbacfee5639f2f"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 13,
+  "pregunta": "¿Cuál es el país con más habitantes del mundo actualmente?",
+  "opciones": [
+    "China",
+    "India",
+    "EE. UU.",
+    "Indonesia"
+  ],
+  "respuesta_correcta": "India"
+},
+{
+  "_id": {
+    "$oid": "6a030bf008cbacfee5639f31"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 14,
+  "pregunta": "¿En qué isla fue exiliado Napoleón Bonaparte por última vez?",
+  "opciones": [
+    "Elba",
+    "Santa Elena",
+    "Córcega",
+    "Sicilia"
+  ],
+  "respuesta_correcta": "Santa Elena"
+},
+{
+  "_id": {
+    "$oid": "6a030bfb08cbacfee5639f33"
+  },
+  "tematica": "Geografía e Historia",
+  "nivel": 15,
+  "pregunta": "¿Qué tratado puso fin formalmente a la Primera Guerra Mundial?",
+  "opciones": [
+    "Tratado de Tordesillas",
+    "Tratado de Versalles",
+    "Tratado de Utrecht",
+    "Paz de Westfalia"
+  ],
+  "respuesta_correcta": "Tratado de Versalles"
+}]
