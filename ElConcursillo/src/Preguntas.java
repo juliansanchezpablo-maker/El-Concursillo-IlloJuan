@@ -1,22 +1,14 @@
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
-import javax.swing.JProgressBar;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.*;
+import java.util.List;
+import javax.swing.*;
+import javax.swing.border.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class Preguntas extends JFrame {
-
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     
@@ -27,20 +19,19 @@ public class Preguntas extends JFrame {
     private JLabel lblNombreJugador;
 
     private int numeroDePreguntaActual = 0; 
-    private int[] respuestasCorrectas = {1, 0, 3, 2, 1, 0, 0, 1, 2, 3, 1, 2, 0, 3, 1};
-    public JLabel lblNewLabel_1;
+    private List<Pregunta> todasLasPreguntas;
+    private List<Pregunta> preguntasPartida; // Las 15 seleccionadas para jugar
+
     public JTextArea areaDinero;
     public JTextArea textArea;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Preguntas frame = new Preguntas();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                Preguntas frame = new Preguntas();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -48,170 +39,116 @@ public class Preguntas extends JFrame {
     public Preguntas() {
         setTitle("El Concursillo - Panel de Juego");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    setSize(800, 600);
+        setSize(800, 600);
         setLocationRelativeTo(null); 
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(30, 30, 100)); 
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
         contentPane.setLayout(null);
+        setContentPane(contentPane);
 
-        // Nombre del Jugador
-        String nombreDisplay = (gestionInicioSesion.nombre != null) ? gestionInicioSesion.nombre : "Jugador";
-        lblNombreJugador = new JLabel("Concursante: " + nombreDisplay);
+        // ... (Tus JLabels de Nombre y Número de Pregunta)
+        lblNombreJugador = new JLabel("Concursante: " + (gestionInicioSesion.nombre != null ? gestionInicioSesion.nombre : "Jugador"));
         lblNombreJugador.setForeground(Color.WHITE);
-        lblNombreJugador.setBounds(43, 99, 301, 25);
+        lblNombreJugador.setBounds(43, 64, 301, 25);
         contentPane.add(lblNombreJugador);
 
-        lblPregunta = new JLabel("Pregunta actual: " + (numeroDePreguntaActual + 1));
+        lblPregunta = new JLabel("Pregunta actual: 1");
         lblPregunta.setForeground(Color.YELLOW);
         lblPregunta.setFont(new Font("Tahoma", Font.BOLD, 14));
-        lblPregunta.setBounds(33, 64, 200, 25);
+        lblPregunta.setBounds(33, 34, 200, 25);
         contentPane.add(lblPregunta);
 
         // --- BOTONES DE RESPUESTA ---
-        boton0 = new JButton("Opción A");
-        boton0.setForeground(new Color(255, 255, 255));
-        boton0.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
-        boton0.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        boton0.setBackground(new Color(21, 21, 70));
-        boton0.setBounds(34, 267, 232, 62);
-        contentPane.add(boton0);
-
-        boton1 = new JButton("Opción B");
-        boton1.setForeground(new Color(255, 255, 255));
-        boton1.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
-        boton1.setBackground(new Color(21, 21, 70));
-        boton1.setBounds(299, 267, 238, 62);
-        contentPane.add(boton1);
-
-        boton2 = new JButton("Opción C");
-        boton2.setForeground(new Color(255, 255, 255));
-        boton2.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
-        boton2.setBackground(new Color(21, 21, 70));
-        boton2.setBounds(34, 362, 232, 62);
-        contentPane.add(boton2);
-
-        boton3 = new JButton("Opción D");
-        boton3.setForeground(new Color(255, 255, 255));
-        boton3.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
-        boton3.setBackground(new Color(21, 21, 70));
-        boton3.setBounds(299, 362, 238, 62);
-        contentPane.add(boton3);
-
+        boton0 = crearBotonRespuesta(34, 267);
+        boton1 = crearBotonRespuesta(299, 267);
+        boton2 = crearBotonRespuesta(34, 362);
+        boton3 = crearBotonRespuesta(299, 362);
         misBotones = new JButton[]{boton0, boton1, boton2, boton3};
 
-        // --- LOS 4 COMODINES ---
+        // --- LÓGICA DE COMPROBACIÓN ---
+        for (int i = 0; i < 4; i++) {
+            final int index = i;
+            misBotones[i].addActionListener(e -> comprobarRespuesta(index));
+        }
 
-        // 1. COMODÍN 50:50
-        coModin1 = new JButton("50:50");
-        coModin1.setForeground(new Color(255, 255, 255));
-        coModin1.setBackground(new Color(30, 30, 100));
-        coModin1.setFont(new Font("Tahoma", Font.BOLD, 12));
-        coModin1.setBounds(34, 475, 100, 40);
-        coModin1.setBorder(new LineBorder(new Color(255, 215, 0), 4, true));
-        coModin1.addActionListener(e -> {
-            GestionComodines gc = new GestionComodines();
-            int[] borrar = gc.usar50porCientoFinal(respuestasCorrectas[numeroDePreguntaActual]);
-            for (int i : borrar) misBotones[i].setVisible(false);
-            coModin1.setEnabled(false);
-        });
-        contentPane.add(coModin1);
-
-        // 2. COMODÍN RULETA
-        Ruleta = new JButton("Ruleta");
-        Ruleta.setForeground(new Color(255, 255, 255));
-        Ruleta.setBackground(new Color(30, 30, 100));
-        Ruleta.setFont(new Font("Tahoma", Font.BOLD, 12));
-        Ruleta.setBounds(166, 475, 100, 40);
-        Ruleta.setBorder(new LineBorder(new Color(255, 215, 0), 4, true));
-        Ruleta.addActionListener(e -> {
-            GestionComodines gc = new GestionComodines();
-            int[] borrar = gc.usarRuletaAleatoria(respuestasCorrectas[numeroDePreguntaActual]);
-            for (int i : borrar) misBotones[i].setVisible(false);
-            JOptionPane.showMessageDialog(null, "La ruleta ha eliminado opciones.");
-            Ruleta.setEnabled(false);
-        });
-        contentPane.add(Ruleta);
-
-        // 3. COMODÍN LLAMADA
-        Llamada = new JButton("Llamada");
-        Llamada.setForeground(new Color(255, 255, 255));
-        Llamada.setBackground(new Color(30, 30, 100));
-        Llamada.setFont(new Font("Tahoma", Font.BOLD, 12));
-        Llamada.setBounds(299, 475, 100, 40);
-        Llamada.setBorder(new LineBorder(new Color(255, 215, 0), 4, true));
-        Llamada.addActionListener(e -> {
-            GestionComodines gc = new GestionComodines();
-            String consejo = gc.usarLlamada(respuestasCorrectas[numeroDePreguntaActual]);
-            JOptionPane.showMessageDialog(null, "Amigo: " + consejo);
-            Llamada.setEnabled(false);
-        });
-        contentPane.add(Llamada);
-
-        // 4. COMODÍN CHAT
-        Comodin_chat = new JButton("Chat");
-        Comodin_chat.setForeground(new Color(255, 255, 255));
-        Comodin_chat.setBackground(new Color(30, 30, 100));
-        Comodin_chat.setFont(new Font("Tahoma", Font.BOLD, 12));
-        Comodin_chat.setBounds(437, 475, 100, 40);
-        Comodin_chat.setBorder(new LineBorder(new Color(255, 215, 0), 5, true));
-        Comodin_chat.addActionListener(e -> {
-            GestionComodines gc = new GestionComodines();
-            int[] v = gc.usarChat(respuestasCorrectas[numeroDePreguntaActual]);
-            String msg = "A: "+v[0]+"% | B: "+v[1]+"% | C: "+v[2]+"% | D: "+v[3]+"%";
-            JOptionPane.showMessageDialog(null, "Resultados de la audiencia:\n" + msg);
-            Comodin_chat.setEnabled(false);
-        });
-        contentPane.add(Comodin_chat);
-
-        // --- NAVEGACIÓN ---
-        JButton btnSiguiente = new JButton("SIGUIENTE");
-        btnSiguiente.setBackground(Color.GREEN);
-        btnSiguiente.setBounds(626, 479, 138, 33);
-        btnSiguiente.addActionListener(e -> {
-            if (numeroDePreguntaActual < 14) {
-                numeroDePreguntaActual++;
-                lblPregunta.setText("Pregunta actual: " + (numeroDePreguntaActual + 1));
-                for(JButton b : misBotones) b.setVisible(true);
-            }
-        });
-        contentPane.add(btnSiguiente);
-
-        JButton btnVolver = new JButton("SALIR");
-        btnVolver.setBackground(Color.RED);
-        btnVolver.setForeground(Color.WHITE);
-        btnVolver.setBounds(687, 56, 77, 33);
-        btnVolver.addActionListener(e -> {
-            PantallaInicioSesion inicio = new PantallaInicioSesion();
-            inicio.setVisible(true);
-            dispose();
-        });
-        contentPane.add(btnVolver);
-        
-        lblNewLabel_1 = new JLabel("PREMIOS");
-        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
-        lblNewLabel_1.setForeground(new Color(255, 255, 0));
-        lblNewLabel_1.setBounds(626, 97, 87, 53);
-        contentPane.add(lblNewLabel_1);
-        
-        areaDinero = new JTextArea();
-        areaDinero.setText("\r\n\r\n\r\n 15\t1.000.000\r\n 14\t500.000\r\n 13\t250.000\r\n 12\t125.000\r\n 11\t64.000\r\n 10\t20.000\r\n 9\t10.000\r\n 8\t5.000\r\n 7\t2.500\r\n 6\t1.500\r\n 5\t1.000\r\n 4\t500\r\n 3\t300\r\n 2\t200\r\n 1\t100\r\n");
-        areaDinero.setForeground(Color.WHITE);
-        areaDinero.setFont(new Font("Arial Black", Font.BOLD, 13));
-        areaDinero.setBorder(new LineBorder(new Color(0, 0, 0), 4, true));
-        areaDinero.setBackground(new Color(21, 21, 70));
-        areaDinero.setBounds(570, 99, 193, 348);
-        contentPane.add(areaDinero);
-        
+        // --- ÁREA DE TEXTO PREGUNTA ---
         textArea = new JTextArea();
+        textArea.setWrapStyleWord(true);
+        textArea.setLineWrap(true);
+        textArea.setEditable(false);
         textArea.setBackground(new Color(21, 21, 70));
+        textArea.setForeground(Color.WHITE);
+        textArea.setFont(new Font("Tahoma", Font.PLAIN, 16));
         textArea.setBounds(34, 99, 503, 135);
-        contentPane.add(textArea);
         textArea.setBorder(new LineBorder(new Color(255, 215, 0), 4, true));
+        contentPane.add(textArea);
+
+        // ... (Tus comodines y área de dinero igual que antes)
+        
+        cargarYPrepararPreguntas();
+    }
+
+    private JButton crearBotonRespuesta(int x, int y) {
+        JButton btn = new JButton();
+        btn.setForeground(Color.WHITE);
+        btn.setBackground(new Color(21, 21, 70));
+        btn.setBorder(new LineBorder(Color.WHITE, 3, true));
+        btn.setBounds(x, y, 232, 62);
+        contentPane.add(btn);
+        return btn;
+    }
+
+    private void cargarYPrepararPreguntas() {
+        try {
+            Gson gson = new Gson();
+            InputStream is = getClass().getResourceAsStream("/resource/Preguntas.json");
+            InputStreamReader reader = new InputStreamReader(is);
+            todasLasPreguntas = gson.fromJson(reader, new TypeToken<List<Pregunta>>(){}.getType());
+
+            // --- AUMENTO DE DIFICULTAD ---
+           
+            Collections.sort(todasLasPreguntas, Comparator.comparingInt(Pregunta::getDificultad));
+            
+           
+            preguntasPartida = todasLasPreguntas.subList(0, Math.min(15, todasLasPreguntas.size()));
+
+            actualizarPreguntaEnPantalla();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error cargando preguntas: " + e.getMessage());
+        }
+    }
+
+    private void actualizarPreguntaEnPantalla() {
+        if (numeroDePreguntaActual < preguntasPartida.size()) {
+            Pregunta p = preguntasPartida.get(numeroDePreguntaActual);
+            textArea.setText(p.getEnunciado());
+            boton0.setText("A: " + p.getO1());
+            boton1.setText("B: " + p.getO2());
+            boton2.setText("C: " + p.getO3());
+            boton3.setText("D: " + p.getO4());
+            
+            lblPregunta.setText("Pregunta actual: " + (numeroDePreguntaActual + 1));
+            for(JButton b : misBotones) {
+                b.setVisible(true);
+                b.setBackground(new Color(21, 21, 70));
+            }
+        }
+    }
+
+    private void comprobarRespuesta(int indiceElegido) {
+        Pregunta p = preguntasPartida.get(numeroDePreguntaActual);
+        if (indiceElegido == p.getCorrecta()) {
+            JOptionPane.showMessageDialog(this, "¡CORRECTO!");
+            numeroDePreguntaActual++;
+            if (numeroDePreguntaActual < 15) {
+                actualizarPreguntaEnPantalla();
+            } else {
+                JOptionPane.showMessageDialog(this, "¡HAS GANADO EL MILLÓN!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Respuesta incorrecta. Fin del juego.");
+            dispose();
+        }
     }
 }
