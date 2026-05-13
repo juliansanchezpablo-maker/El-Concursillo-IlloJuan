@@ -8,5 +8,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
 	<classpathentry kind="lib" path="com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/slf4j-api-1.7.36.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/bson-5.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/mongodb-driver-core-5.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/mongodb-driver-sync-5.7.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
