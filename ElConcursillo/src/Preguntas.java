@@ -261,6 +261,7 @@ public class Preguntas extends JFrame {
 
         // --- ÁREA PREMIOS ---
         areaDinero = new JTextArea();
+        areaDinero.setEditable(false);
         areaDinero.setText("\n\n\n" +
             " 15   > 1.000.000€ <\n" + 
             " 14     500.000€\n" +
