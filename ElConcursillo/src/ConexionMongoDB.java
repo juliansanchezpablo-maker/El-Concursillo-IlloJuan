@@ -15,7 +15,7 @@ public class ConexionMongoDB {
 
     public static MongoDatabase conectar() {
         if (client == null) {
-        	String connectionString = "mongodb+srv://jorgejimenezgarcia1419hola_db_user:millonario2026@proyecto.wepnsln.mongodb.net/Concurso?retryWrites=true&w=majority&appName=PROYECTO";
+        	String connectionString = "mongodb+srv://juliansanchezpablo_db_user:millonario2026@proyecto.wepnsln.mongodb.net/?appName=PROYECTO";
             ServerApi serverApi = ServerApi.builder()
                     .version(ServerApiVersion.V1)
                     .build();

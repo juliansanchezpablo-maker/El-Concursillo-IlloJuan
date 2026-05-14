@@ -72,7 +72,15 @@ public class MenuPrincipal extends JFrame {
 		btnVerRanking.setBackground(new Color(0, 0, 128));
 		btnVerRanking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnVerRanking.addActionListener(new ActionListener() {
+				    public void actionPerformed(ActionEvent e) {				     
+				        ranking ventanaRanking = new ranking();				        				       
+				        ventanaRanking.setVisible(true);				       				       
+				        dispose();
+				    }
+				});
 			}
+			
 		});
 		btnVerRanking.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnVerRanking.setBounds(256, 295, 250, 46);
@@ -121,7 +129,7 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(btnIniciarPartida);
 		
 		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/resource/FondoQQSM2.jpg")));
+		lblFondo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("FondoQQSM2.jpg")));
 		lblFondo.setBounds(0, 0, 786, 563);
 		contentPane.add(lblFondo);
 		

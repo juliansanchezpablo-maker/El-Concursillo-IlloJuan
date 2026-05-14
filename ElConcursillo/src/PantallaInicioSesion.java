@@ -135,16 +135,18 @@ public class PantallaInicioSesion extends JFrame {
 		
 		btnIniciarJuego.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		      
+		        // --- LA CLAVE: Guardamos lo que haya en el TextField en nuestra variable global ---
+		        gestionInicioSesion.nombre = txtNombreJugador.getText().trim();
+
 		        if (!chkPredeterminado.isSelected()) {
 		            JOptionPane.showMessageDialog(null, "¡Atención! Marca el tipo de juego que deseas");
 		        } 
-		       
-		        else if (gestionInicioSesion.nombre == null) {
-		            JOptionPane.showMessageDialog(null, "Por favor, pulsa REGISTRAR antes de jugar.");
+		        else if (gestionInicioSesion.nombre.isEmpty()) {
+		            // Si el nombre está vacío, no le dejamos pasar
+		            JOptionPane.showMessageDialog(null, "Por favor, introduce tu nombre para continuar.");
 		        } 
 		        else {
-		          
+		            // Si todo está ok, vamos a las preguntas
 		            Preguntas ventanaPreguntas = new Preguntas();
 		            ventanaPreguntas.setVisible(true);
 		            dispose();

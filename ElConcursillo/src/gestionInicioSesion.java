@@ -1,14 +1,10 @@
 
-
-
 public class gestionInicioSesion {
+    public static String nombre = ""; // Importante que sea static
+    public static boolean esPredeterminado;
 
-	    public static String nombre;
-	    public static boolean esPredeterminado;
-
-	    
-	    public static void reset() {
-	        nombre = "";
-	        esPredeterminado = false;
-	    }
-	}
+    public static void reset() {
+        nombre = "";
+        esPredeterminado = false;
+    }
+}

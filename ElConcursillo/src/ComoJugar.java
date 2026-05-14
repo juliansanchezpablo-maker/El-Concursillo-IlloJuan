@@ -123,7 +123,7 @@ public class ComoJugar extends JFrame {
 	    txtIntroduceTuNombre.setForeground(new Color(255, 255, 255));
 	    txtIntroduceTuNombre.setBackground(new Color(128, 0, 255));
 	    txtIntroduceTuNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
-	    txtIntroduceTuNombre.setText("Introduce tu nombre y selecciona la tematica que desees.");
+	    txtIntroduceTuNombre.setText("Dale al botón de iniciar partida");
 	    txtIntroduceTuNombre.setBounds(76, 105, 670, 25);
 	    contentPane.add(txtIntroduceTuNombre);
 	    txtIntroduceTuNombre.setColumns(10);
@@ -205,7 +205,7 @@ public class ComoJugar extends JFrame {
 	    contentPane.add(txtLlamasAUn);
 	    
 	    txtCambiaLaPregunta = new JTextField();
-	    txtCambiaLaPregunta.setText("Cambia la pregunta por otra igual de difícil");
+	    txtCambiaLaPregunta.setText("Hacen una encuesta en el chat que recomienda cual escoger");
 	    txtCambiaLaPregunta.setForeground(Color.WHITE);
 	    txtCambiaLaPregunta.setFont(new Font("Tahoma", Font.BOLD, 10));
 	    txtCambiaLaPregunta.setColumns(10);
@@ -214,7 +214,7 @@ public class ComoJugar extends JFrame {
 	    contentPane.add(txtCambiaLaPregunta);
 	    
 	    txtGirasLaRuleta = new JTextField();
-	    txtGirasLaRuleta.setText("Giras la ruleta y recuperas entre 0 y 3 comodines aleatoriamente");
+	    txtGirasLaRuleta.setText("Puede eliminar de 1 a 3 respuestas incorrectas");
 	    txtGirasLaRuleta.setForeground(Color.WHITE);
 	    txtGirasLaRuleta.setFont(new Font("Tahoma", Font.BOLD, 10));
 	    txtGirasLaRuleta.setColumns(10);
@@ -236,7 +236,7 @@ public class ComoJugar extends JFrame {
 	    lblTusComodines_2.setBounds(227, 268, 360, 50);
 	    contentPane.add(lblTusComodines_2);
 	    
-	    lblTusComodines_3 = new JLabel("Mago");
+	    lblTusComodines_3 = new JLabel("Audiencia");
 	    lblTusComodines_3.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblTusComodines_3.setForeground(Color.YELLOW);
 	    lblTusComodines_3.setFont(new Font("Tahoma", Font.BOLD, 11));

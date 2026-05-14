@@ -18,7 +18,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 
 public class Preguntas extends JFrame {
-
+	private int[] premios = {0, 100, 200, 300, 500, 1000, 1500, 2500, 5000, 10000, 20000, 64000, 125000, 250000, 500000, 1000000};
+	private int dineroActual = 0;
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
@@ -221,7 +222,33 @@ public class Preguntas extends JFrame {
             dispose();
         });
         contentPane.add(btnVolver);
+     // --- BOTÓN RETIRARSE (Solo en pregunta 5 o 10) ---
+        JButton btnRetirarse = new JButton("RETIRARSE");
+        btnRetirarse.setForeground(new Color(255, 255, 255));
+        btnRetirarse.setBackground(new Color(0, 0, 255)); // Naranja
+        btnRetirarse.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnRetirarse.setBounds(534, 56, 136, 33);
 
+        btnRetirarse.addActionListener(e -> {
+            // Comprobamos si está en la pregunta 5 (índice 4) o 10 (índice 9)
+            // Usamos +1 porque numeroDePreguntaActual empieza en 0
+            int preguntaReal = numeroDePreguntaActual + 1;
+
+            if (preguntaReal == 6 || preguntaReal == 11) {
+                int respuesta = JOptionPane.showConfirmDialog(null, 
+                    "Estás en un punto de seguro. ¿Quieres plantarte con " + dineroActual + "€?", 
+                    "Retirarse", JOptionPane.YES_NO_OPTION);
+                
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    finalizarJuego(dineroActual);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, 
+                    "Solo puedes retirarte al completar la pregunta 5 o la 10.");
+            }
+        });
+        contentPane.add(btnRetirarse);
+        
         // --- LABEL PREMIOS ---
         lblNewLabel_1 = new JLabel("PREMIOS");
         lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -308,13 +335,59 @@ public class Preguntas extends JFrame {
     // ── COMPRUEBA SI LA RESPUESTA ES CORRECTA ────────────────────────
     private void comprobarRespuesta(int botonPulsado) {
         if (botonPulsado == respuestasCorrectas[numeroDePreguntaActual]) {
+            // --- ACIERTO ---
             misBotones[botonPulsado].setBackground(new Color(0, 150, 0));
-            JOptionPane.showMessageDialog(null, "¡Correcto!");
+            dineroActual = premios[numeroDePreguntaActual + 1]; // Actualizamos el dinero
+            JOptionPane.showMessageDialog(null, "¡Correcto! Llevas acumulados: " + dineroActual + "€");
+            
+            // Si ha ganado el millón (pregunta 15)
+            if (numeroDePreguntaActual == 14) {
+                finalizarJuego(dineroActual);
+            }
         } else {
+            // --- FALLO ---
             misBotones[botonPulsado].setBackground(Color.RED);
             misBotones[respuestasCorrectas[numeroDePreguntaActual]].setBackground(new Color(0, 150, 0));
-            JOptionPane.showMessageDialog(null, "❌ Incorrecto. La respuesta correcta era: "
-                + opciones[numeroDePreguntaActual][respuestasCorrectas[numeroDePreguntaActual]]);
+            
+            // Calculamos el dinero que se lleva según los seguros (5 y 10)
+            int dineroConsolacion = 0;
+            if (numeroDePreguntaActual >= 10) {
+                dineroConsolacion = 20000;
+            } else if (numeroDePreguntaActual >= 5) {
+                dineroConsolacion = 1000;
+            }
+            
+            JOptionPane.showMessageDialog(null, "❌ Incorrecto. Te vas con el premio garantizado de: " + dineroConsolacion + "€");
+            finalizarJuego(dineroConsolacion);
         }
     }
+    private void finalizarJuego(int dineroFinal) {
+        // 1. Guardamos en la base de datos
+        String nombre = (gestionInicioSesion.nombre != null) ? gestionInicioSesion.nombre : "Jugador Anónimo";
+        guardarEnRanking(nombre, dineroFinal);
+        
+        // 2. Mandamos al usuario a la pantalla de Ranking
+        ranking ventanaRanking = new ranking();
+        ventanaRanking.setVisible(true);
+        
+        // 3. Cerramos esta partida
+        dispose();
+    }
+    
+    private void guardarEnRanking(String nombre, int puntos) {
+        try {
+            MongoCollection<Document> coleccion = ConexionMongoDB.getColeccion("Ranking");
+            
+            // USAMOS "nombre" para que la ventana del Ranking lo reconozca
+            Document record = new Document("nombre", nombre) 
+                                    .append("puntos", puntos)
+                                    .append("fecha", new java.util.Date());
+            
+            coleccion.insertOne(record);
+            System.out.println("✅ Ranking actualizado en MongoDB para: " + nombre);
+        } catch (Exception e) {
+            System.err.println("❌ Error al guardar en ranking: " + e.getMessage());
+        }
+    }
+    
 }
