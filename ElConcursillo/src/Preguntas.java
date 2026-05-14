@@ -25,6 +25,7 @@ public class Preguntas extends JFrame {
 
     public JButton boton0, boton1, boton2, boton3;
     public JButton coModin1, Ruleta, Llamada, Comodin_chat;
+    public JButton btnSiguiente; 
     private JButton[] misBotones;
     private JLabel lblPregunta;
     private JLabel lblNombreJugador;
@@ -191,8 +192,9 @@ public class Preguntas extends JFrame {
         });
         contentPane.add(Comodin_chat);
 
-        // --- BOTÓN SIGUIENTE ---
-        JButton btnSiguiente = new JButton("->");
+        //BOTÓN SIGUIENTE  
+        btnSiguiente = new JButton("->");
+        btnSiguiente.setEnabled(false); 
         btnSiguiente.setFont(new Font("Tahoma", Font.BOLD, 10));
         btnSiguiente.setHorizontalAlignment(SwingConstants.LEFT);
         btnSiguiente.setBackground(new Color(0, 128, 0));
@@ -201,9 +203,11 @@ public class Preguntas extends JFrame {
             if (numeroDePreguntaActual < 14) {
                 numeroDePreguntaActual++;
                 mostrarPregunta(numeroDePreguntaActual);
+                btnSiguiente.setEnabled(false); 
                 for (JButton b : misBotones) {
                     b.setVisible(true);
                     b.setBackground(new Color(21, 21, 70));
+                    b.setEnabled(true); 
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "¡Has completado todas las preguntas!");
@@ -257,7 +261,22 @@ public class Preguntas extends JFrame {
 
         // --- ÁREA PREMIOS ---
         areaDinero = new JTextArea();
-        areaDinero.setText("\r\n\r\n\r\n 15\t1.000.000\r\n 14\t500.000\r\n 13\t250.000\r\n 12\t125.000\r\n 11\t64.000\r\n 10\t20.000\r\n 9\t10.000\r\n 8\t5.000\r\n 7\t2.500\r\n 6\t1.500\r\n 5\t1.000\r\n 4\t500\r\n 3\t300\r\n 2\t200\r\n 1\t100\r\n");
+        areaDinero.setText("\n\n\n" +
+            " 15   > 1.000.000€ <\n" + 
+            " 14     500.000€\n" +
+            " 13     250.000€\n" +
+            " 12     125.000€\n" +
+            " 11     64.000€\n" +
+            " 10   > 20.000€ <\n" + 
+            "  9    10.000€\n" +
+            "  8     5.000€\n" +
+            "  7     2.500€\n" +
+            "  6     1.500€\n" +
+            "  5   > 1.000€ <\n" +   
+            "  4     500€\n" +
+            "  3     300€ \n" +
+            "  2     200€ \n" +
+            "  1     100€ \n");
         areaDinero.setForeground(Color.WHITE);
         areaDinero.setFont(new Font("Arial Black", Font.BOLD, 13));
         areaDinero.setBorder(new LineBorder(new Color(0, 0, 0), 4, true));
@@ -336,8 +355,14 @@ public class Preguntas extends JFrame {
             // --- ACIERTO ---
             misBotones[botonPulsado].setBackground(new Color(0, 150, 0));
             dineroActual = premios[numeroDePreguntaActual + 1]; 
-            JOptionPane.showMessageDialog(null, "¡Correcto! Llevas acumulados: " + dineroActual + "€");
             
+           
+            btnSiguiente.setEnabled(true);
+            
+          
+            for(JButton b : misBotones) b.setEnabled(false);
+
+            JOptionPane.showMessageDialog(null, "¡Correcto! Llevas acumulados: " + dineroActual + "€");
             
             if (numeroDePreguntaActual == 14) {
                 finalizarJuego(dineroActual);
@@ -382,9 +407,9 @@ public class Preguntas extends JFrame {
                                     .append("fecha", new java.util.Date());
             
             coleccion.insertOne(record);
-            System.out.println("✅ Ranking actualizado en MongoDB para: " + nombre);
+            System.out.println("Ranking actualizado en MongoDB para: " + nombre);
         } catch (Exception e) {
-            System.err.println("❌ Error al guardar en ranking: " + e.getMessage());
+            System.out.println("Error al guardar en ranking: " + e.getMessage());
         }
     }
     

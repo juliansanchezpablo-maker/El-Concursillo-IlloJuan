@@ -126,9 +126,9 @@ public class ranking extends JFrame {
                                     .append("puntos", puntos)
                                     .append("fecha", new Date());
             coleccion.insertOne(partida);
-            System.out.println("✅ Puntuación guardada correctamente.");
+            System.out.println("Puntuación guardada correctamente.");
         } catch (Exception e) {
-            System.err.println("❌ Error al guardar: " + e.getMessage());
+            System.err.println("Error al guardar: " + e.getMessage());
         }
     }
 
@@ -144,7 +144,7 @@ public class ranking extends JFrame {
                      .limit(10) 
                      .into(lista);
         } catch (Exception e) {
-            System.err.println("❌ Error al obtener el ranking: " + e.getMessage());
+            System.out.println("Error al obtener el ranking: " + e.getMessage());
         }
         return lista;
     }

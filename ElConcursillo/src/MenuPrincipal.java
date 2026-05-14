@@ -61,7 +61,7 @@ public class MenuPrincipal extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(256, 138, 236, 20);
 		contentPane.add(lblNewLabel_1);
-		
+		//RANKING
 		btnVerRanking = new JButton("Ver Ranking");
 		btnVerRanking.setForeground(new Color(255, 255, 255));
 		btnVerRanking.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
@@ -78,10 +78,11 @@ public class MenuPrincipal extends JFrame {
 			}
 			
 		});
+		
 		btnVerRanking.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnVerRanking.setBounds(256, 295, 250, 46);
 		contentPane.add(btnVerRanking);
-		
+		//SALIR
 		btnSalir = new JButton("Salir");
 		btnSalir.setForeground(new Color(255, 255, 255));
 		btnSalir.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
@@ -115,7 +116,7 @@ public class MenuPrincipal extends JFrame {
 		btnComoJugar.setBackground(new Color(0, 0, 128));
 		btnComoJugar.setBounds(256, 360, 250, 46);
 		contentPane.add(btnComoJugar);
-		
+		//INICIAR PARTIDA
 		btnIniciarPartida = new JButton("Iniciar Partida");
 		btnIniciarPartida.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
