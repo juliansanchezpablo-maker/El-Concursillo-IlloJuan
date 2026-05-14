@@ -20,9 +20,7 @@ public class MenuPrincipal extends JFrame {
 	public JButton pruebaBoton;
 	public JLabel lblFondo;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -36,9 +34,7 @@ public class MenuPrincipal extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public MenuPrincipal() {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 656, 356);
@@ -63,7 +59,7 @@ public class MenuPrincipal extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(256, 156, 236, 20);
+		lblNewLabel_1.setBounds(256, 138, 236, 20);
 		contentPane.add(lblNewLabel_1);
 		
 		btnVerRanking = new JButton("Ver Ranking");
@@ -91,7 +87,14 @@ public class MenuPrincipal extends JFrame {
 		btnSalir.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnSalir.addActionListener(new ActionListener() {
+				    public void actionPerformed(ActionEvent e) {
+				      
+				        System.exit(0);
+				    }
+				});
 			}
+			
 		});
 		btnSalir.setBackground(new Color(255, 0, 0));
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 17));

@@ -52,9 +52,7 @@ public class ComoJugar extends JFrame {
 	public JLabel lblTusComodines_7;
 	public JTextField txtPreguntas_2;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -68,9 +66,7 @@ public class ComoJugar extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public ComoJugar() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

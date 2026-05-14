@@ -31,7 +31,7 @@ public class Preguntas extends JFrame {
 
     private int numeroDePreguntaActual = 0;
 
-    // Arrays que se rellenan desde MongoDB
+    
     private String[] preguntas = new String[15];
     private String[][] opciones = new String[15][4];
     private int[] respuestasCorrectas = new int[15];
@@ -222,16 +222,15 @@ public class Preguntas extends JFrame {
             dispose();
         });
         contentPane.add(btnVolver);
-     // --- BOTÓN RETIRARSE (Solo en pregunta 5 o 10) ---
+     // --- BOTÓN RETIRARSE  ---
         JButton btnRetirarse = new JButton("RETIRARSE");
         btnRetirarse.setForeground(new Color(255, 255, 255));
-        btnRetirarse.setBackground(new Color(0, 0, 255)); // Naranja
+        btnRetirarse.setBackground(new Color(0, 0, 255)); 
         btnRetirarse.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnRetirarse.setBounds(534, 56, 136, 33);
 
         btnRetirarse.addActionListener(e -> {
-            // Comprobamos si está en la pregunta 5 (índice 4) o 10 (índice 9)
-            // Usamos +1 porque numeroDePreguntaActual empieza en 0
+       
             int preguntaReal = numeroDePreguntaActual + 1;
 
             if (preguntaReal == 6 || preguntaReal == 11) {
@@ -278,12 +277,11 @@ public class Preguntas extends JFrame {
         textArea.setEditable(false);
         contentPane.add(textArea);
 
-        // Carga preguntas de MongoDB y muestra la primera
         cargarPreguntasDeMongoDB("Cultura General");
         mostrarPregunta(0);
     }
 
-    // ── CARGA PREGUNTAS DESDE MONGODB ────────────────────────────────
+    // ── CARGA PREGUNTAS DESDE MONGODB
     private void cargarPreguntasDeMongoDB(String tematica) {
         try {
             MongoCollection<Document> coleccion = ConexionMongoDB.getColeccion("Preguntas");
@@ -322,7 +320,7 @@ public class Preguntas extends JFrame {
         }
     }
 
-    // ── MUESTRA LA PREGUNTA EN PANTALLA ──────────────────────────────
+    // ── MUESTRA LA PREGUNTA EN PANTALLA 
     private void mostrarPregunta(int indice) {
         lblPregunta.setText("Pregunta actual: " + (indice + 1));
         textArea.setText(preguntas[indice]);
@@ -332,15 +330,15 @@ public class Preguntas extends JFrame {
         boton3.setText("D:  " + opciones[indice][3]);
     }
 
-    // ── COMPRUEBA SI LA RESPUESTA ES CORRECTA ────────────────────────
+    // ── COMPRUEBA SI LA RESPUESTA ES CORRECTA 
     private void comprobarRespuesta(int botonPulsado) {
         if (botonPulsado == respuestasCorrectas[numeroDePreguntaActual]) {
             // --- ACIERTO ---
             misBotones[botonPulsado].setBackground(new Color(0, 150, 0));
-            dineroActual = premios[numeroDePreguntaActual + 1]; // Actualizamos el dinero
+            dineroActual = premios[numeroDePreguntaActual + 1]; 
             JOptionPane.showMessageDialog(null, "¡Correcto! Llevas acumulados: " + dineroActual + "€");
             
-            // Si ha ganado el millón (pregunta 15)
+            
             if (numeroDePreguntaActual == 14) {
                 finalizarJuego(dineroActual);
             }
@@ -349,7 +347,7 @@ public class Preguntas extends JFrame {
             misBotones[botonPulsado].setBackground(Color.RED);
             misBotones[respuestasCorrectas[numeroDePreguntaActual]].setBackground(new Color(0, 150, 0));
             
-            // Calculamos el dinero que se lleva según los seguros (5 y 10)
+          
             int dineroConsolacion = 0;
             if (numeroDePreguntaActual >= 10) {
                 dineroConsolacion = 20000;
@@ -362,15 +360,15 @@ public class Preguntas extends JFrame {
         }
     }
     private void finalizarJuego(int dineroFinal) {
-        // 1. Guardamos en la base de datos
+     
         String nombre = (gestionInicioSesion.nombre != null) ? gestionInicioSesion.nombre : "Jugador Anónimo";
         guardarEnRanking(nombre, dineroFinal);
         
-        // 2. Mandamos al usuario a la pantalla de Ranking
+      
         ranking ventanaRanking = new ranking();
         ventanaRanking.setVisible(true);
         
-        // 3. Cerramos esta partida
+       
         dispose();
     }
     
@@ -378,7 +376,7 @@ public class Preguntas extends JFrame {
         try {
             MongoCollection<Document> coleccion = ConexionMongoDB.getColeccion("Ranking");
             
-            // USAMOS "nombre" para que la ventana del Ranking lo reconozca
+
             Document record = new Document("nombre", nombre) 
                                     .append("puntos", puntos)
                                     .append("fecha", new java.util.Date());
