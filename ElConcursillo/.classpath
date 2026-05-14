@@ -2,8 +2,6 @@
 <classpath>
 	<classpathentry excluding="resource/" kind="src" path="src"/>
 	<classpathentry kind="src" path="src/resource"/>
-	<classpathentry kind="lib" path="com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
-	<classpathentry kind="lib" path="com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
 	<classpathentry kind="lib" path="lib/bson-5.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/mongodb-driver-core-5.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/mongodb-driver-sync-5.0.1.jar"/>
